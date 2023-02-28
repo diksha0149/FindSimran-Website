@@ -41,8 +41,9 @@ const handleSubmit =(e)=>{
     email:email,
     password: password
   }).then(result=>{
-    console.log(result)
+    console.log(result.data)
     localStorage.setItem('token',result.data.token)
+    localStorage.setItem('user',result.data.profile_name)
     navigate('/dashboard')
   })
   .catch(error=>{

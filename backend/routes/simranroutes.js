@@ -73,9 +73,12 @@ router.route('/login').post(async(req,res)=>{
                 id: Users.id,
             },
         };
+        // console.log(user)
         jwt.sign(payload, jwtSecret, { expiresIn: "5 days" }, (err, token) => {
             if (err) throw err;
-            return res.json({ token });
+            console.log(user_email.UserName);
+            const profile_name = user_email.UserName;
+            return res.json({ token, profile_name});
         });
         // return res.status(200).json({
         //     msg: "successfully registered"
@@ -114,6 +117,7 @@ router.route("/auth").get(async (req, res) => {
 // api to post scream details
 router.route("/scream").post(require('../models/validator/screamvalidator'),async (req, res) => {
     const {title,link,description,skills} = req.body
+    console.log(req.body);
     //condition to check if request body is empty
   if(req.body.constructor === Object && Object.keys(req.body).length === 0){
     res.status(400).json();
@@ -148,4 +152,10 @@ router.route('/screms').get(async(req,res)=>{
     const docs = await Scream.find({});
     res.send(docs);
 })
+
+
+
+
+
+
 module.exports = router;
