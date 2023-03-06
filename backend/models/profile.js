@@ -1,23 +1,23 @@
 const mongoose = require('mongoose')
 
-const Screams = new mongoose.Schema({
-    title : {
-        type : String,
-        required: true
-    },
-    link : {
-        type : String,
-        required: true
-    },
-    description : {
-        type : String,
-        required: true
-    },
-    skills : {
-        type : String,
-        required: true
-    },
-})
+// const Screams = new mongoose.Schema({
+//     title : {
+//         type : String,
+//         required: true
+//     },
+//     link : {
+//         type : String,
+//         required: true
+//     },
+//     description : {
+//         type : String,
+//         required: true
+//     },
+//     skills : {
+//         type : String,
+//         required: true
+//     },
+// })
 
 const userSchema = new mongoose.Schema({
     UserName : {
@@ -52,8 +52,7 @@ const userSchema = new mongoose.Schema({
     institutionName : {
         type : String,
         default : ''
-    },
-    scream :[Screams]
+    }
 },
 {
     timestamps : true

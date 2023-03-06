@@ -1,0 +1,37 @@
+{/* <form onSubmit={handleSubmit}>
+            <label>
+            <div className='heading'>UserName:</div>
+            <input type="text" name="UserName" 
+            onChange={handleChangeInput}
+            value={UserName}
+            />
+            {!username && (
+                <p>username already exists</p>
+            )}
+            </label>
+            <br/>
+            <label>
+            <div className='heading'>Email:</div>
+            <input type="email" name="email" 
+            onChange={handleChangeInput} 
+            value={email}
+            />
+            </label>
+            <br/>
+            <label>
+            <div className='heading'>Password:</div>
+            <input type="password" name="password" 
+            onChange={handleChangeInput}
+            value={password}
+            />
+            </label>
+            <br/>
+            <button type="submit" value="Submit" disabled={UserName && email && password ? false : true} onClick={handleSubmit}>Register</button>
+            {register ? (
+                <Navigate to="/dashboard" />
+                ) : (
+                <p className="text-danger">You Are Not Registered</p>
+                )
+            }
+            <p>If you already have an account? <Link to="/login">Login Now</Link></p>
+        </form> */}

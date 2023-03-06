@@ -1,11 +1,18 @@
 import React from "react";
 import ContestCard from "./ContestCard";
+import '../CodingProblems/CodingProblems.css'
+import Header from "../Navbar/Header";
 
 const Tabs = ({ color }) => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <>
-      <div className="flex flex-wrap">
+    <div className="main">
+      <div className="div1">
+      <Header />
+      </div>
+        <div className="div2">
+        <div className="flex flex-wrap">
         <div className="w-full">
           <ul
             className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
@@ -140,6 +147,9 @@ const Tabs = ({ color }) => {
           </div>
         </div>
       </div>
+        </div>
+    </div>
+      
     </>
   );
 };

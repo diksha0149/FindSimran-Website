@@ -1,18 +1,33 @@
-.main{
+.wid{
   width: 100%;
+}
+.w-100, .min-h-screen{
   height: 100vh;
+}
+.topbar{
+  width: 100vw;
+  height: 60px;
+  background-color: skyblue;
+  z-index: 10;
+  position: relative;
+  padding: 0px 10px 0px 10px;
   display: inline-flex;
+  align-items: center;
 }
-.header{
-  width: 100%;
-  height: 10vh;
-  background-color: aqua;
+.profileIcon .logo, .icon, .userName{
+  display: inline-block;
 }
-.sidebar, .rightbar{
-  width: 20%;
-  background-color: blue;
+.profileIcon{
+ right: 0%;
+ top: 0%;
+position: absolute;
+
 }
-.mainbar{
-  width: 60%;
-  background-color: red;
+.profileIcon{
+  display: inline-flex;
+  align-items: center;
+}
+.userName{
+  text-align: center;
+  
 }

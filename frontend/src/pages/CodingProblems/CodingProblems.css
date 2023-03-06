@@ -1,0 +1,18 @@
+.div1{
+    width: 13rem;
+    height: auto;
+    display: inline-block;
+    z-index: 1;
+}
+.div2{
+    width: 70rem;
+    height: auto;
+    display: inline-block;
+    margin-right: 0%;
+    position: relative;
+    right: 0;
+}
+.main{
+    width: 100%;
+    display: flex;
+}

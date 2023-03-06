@@ -28,12 +28,11 @@ const Dashboard = () => {
     fetchdata();
   }, []);
   const logged_user = localStorage.getItem("user");
-  // const parsedItem = JSON.parse(savedItem);
-  console.log(logged_user);
   return (
     <div>
       <button onClick={()=>{
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         navigate("/login");
       }}>Logout</button>
       <div>{logged_user}</div>

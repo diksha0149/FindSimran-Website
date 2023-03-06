@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styles from "../../index.css"
 import "./studyResources.css"
 import Data from "./ResourcesData";
+import '../CodingProblems/CodingProblems.css';
+import Header from "../Navbar/Header";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 export class StudyResources extends Component {
@@ -14,7 +16,12 @@ export class StudyResources extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
+        <div className="div1">
+        <Header />
+        </div>
+        <div className="div2">
+        <div>
         <h1 className="text-xl text-blue-500 font-medium" >
           When learning CS, there are some useful sites you must know to get
           always informed to do your technologies even better and learn new
@@ -70,6 +77,9 @@ export class StudyResources extends Component {
         ))}
         </div>
       </div>
+        </div>
+      </div>
+      
     );
   }
 }
