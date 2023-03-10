@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CodingProblems/CodingProblems.css";
-import Header from "./Navbar/Header";
+import Home from "./Navbar/Header";
 import { BsPlusCircle } from "react-icons/bs";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 
@@ -49,7 +49,7 @@ const PostScream = () => {
   return (
     <div className="main">
       <div className="div1">
-        <Header />
+        <Home />
       </div>
       <div className="div2">
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">

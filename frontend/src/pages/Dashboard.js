@@ -21,14 +21,20 @@ const Dashboard = () => {
   }, []);
   useEffect(() => {
     const fetchdata = async () => {
-      const data = await axios.get("http://localhost:5000/api/screms");
-      console.log(data.data);
-      setScreams(data.data);
+      const data = await axios.get("http://localhost:5000/api/allScreams");
+      console.log(data.data.screams);
+      setScreams(data.data.screams);
     };
     fetchdata();
   }, []);
   const logged_user = localStorage.getItem("user");
   return (
+    <>
+    <div className="main">
+        <div className="div1">
+        <Header />
+        </div>
+        <div className="div2">
     <div>
       <button onClick={()=>{
         localStorage.removeItem('token')
@@ -64,6 +70,9 @@ const Dashboard = () => {
         </div>
       ))}
     </div>
+    </div>
+    </div>
+    </>
   );
 };
 

@@ -13,9 +13,9 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 
 const Header = () => {
   const menus = [
-    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Post_Scream", link: "/postscream", icon: AiFillPlusCircle },
-    { name: "View Votes", link: "/", icon: FiMessageSquare },
+    { name: "View Votes", link: "/viewVotes", icon: FiMessageSquare },
     { name: "Upcoming Contest", link: "/upcoming_Contest", icon: TbReportAnalytics, margin: true },
     { name: "Study Resources", link: "/studyResources", icon: FiBookOpen },
     { name: "Coding Problems", link: "/CodingProblems", icon: BiCodeAlt },

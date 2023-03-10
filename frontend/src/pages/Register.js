@@ -9,6 +9,7 @@ const Register = () => {
     const {UserName,email,password} = userData
     const [register, setRegister] = useState(false);
     const [username, setUsername] = useState(true);
+    const [error, setError] = useState("");
     const handleChangeInput=(e)=>{
         const {name,value} = e.target; 
         setUserData({...userData, [name]: value})
@@ -16,29 +17,45 @@ const Register = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(UserName.length===0){
-           alert("enter Username");
-        }
-        else if(!re.test(email)){
-            alert("enter email");
-        }
-        else if(password.length<8){
-            alert("enter pass");
-        }
-        else{
+        // if(UserName.length===0){
+        //    setError("enter Username");
+        // }
+        // else if(!re.test(email)){
+        //     // setUserEmail(false);
+        //     setError("enter correct email")
+        //     return ;
+        // }
+        // else if(password.length<8){
+        //     alert("enter pass");
+        // }
+        // else{
             const response = await fetch('http://localhost:5000/api/register',{
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers:{
                     'Content-Type':'application/json'
                 }
+            }).then(res=>res.json())
+            .then(data=>{
+                if(data.error){
+                    // alert(data.error);
+                    setError(data.error)
+                }
+                else {
+                    setError("");
+                    setRegister(true);
+                    <Navigate to="/dashboard" />
+                }
             })
-            if(response.status===400){
-                setUsername(false);
-            }
-            else setRegister(true);
-            console.log(response.status);
-        }
+            // console.log(response)
+            // if(!response){
+            //     setUsername(false);
+            //     setError(response)
+                
+            // }
+            // else setRegister(true);
+            // console.log(response.status);
+        // }
 
     }
   return (
@@ -105,7 +122,12 @@ const Register = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex items-center mt-4">
+                        { error.length>0 && (
+                        <h1  className="flex items-center mt-4 w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">{error}</h1>
+                        // alert(error)
+                        )
+                        }
+                        <div className="flex items-center mt-4 ">
                             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
                             disabled={UserName && email && password ? false : true} onClick={handleSubmit}>
                                 Register

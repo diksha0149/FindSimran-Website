@@ -1,18 +1,22 @@
 .div1{
     width: 13rem;
-    height: auto;
+    height: 70vh;
     display: inline-block;
     z-index: 1;
+    /* position: fixed; */
 }
 .div2{
     width: 70rem;
-    height: auto;
+    height: 100vh;
     display: inline-block;
     margin-right: 0%;
     position: relative;
     right: 0;
+    /* margin-top: 20px; */
+    
 }
 .main{
     width: 100%;
     display: flex;
+    overflow: scroll;
 }

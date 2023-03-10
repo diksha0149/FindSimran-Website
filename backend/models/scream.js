@@ -1,5 +1,5 @@
 const mongoose  = require('mongoose')
-const {ObjectId} = mongoose.Schema.Types
+// const {ObjectId} = mongoose.Schema.Types
 const screamData = new mongoose.Schema({
     title : {
         type : String,
@@ -18,7 +18,7 @@ const screamData = new mongoose.Schema({
         required: true
     },
     postedBy : {
-        type: ObjectId,
+        type:mongoose.Schema.Types.ObjectID,
         ref: "user"
     }
 })

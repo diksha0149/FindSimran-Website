@@ -20,19 +20,24 @@ router.route('/register').post(async(req,res)=>{
     try {
     const {UserName, email, password} = req.body
     let newUserName = UserName.toLowerCase().replace(/ /g,'')
-    if(password.length < 8){
-        return res.status(400).json({success: false,
-        error : "password must be greater than 7 characters"})
-    }
+    
     let check_username = await Users.findOne({UserName : newUserName})
     if(check_username){
         console.log(check_username)
-        return res.status(400).json({success: false,
-        message : "This username already exists"})
+        return res.status(400).json({
+        error : "This username already exists"})
     }
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)){
+        return res.status(400).json({error : "Enter Correct  Email"})
+    }    
     let check_email = await Users.findOne({email})
     if(check_email){
-        return res.status(400).json({message : "this email already exists."})
+        return res.status(400).json({error : "this email already exists."})
+    }
+    if(password.length < 8){
+        return res.status(400).json({
+        error : "password must be greater than 7 characters"})
     }
     const user = new Users({
         UserName : newUserName,
@@ -159,23 +164,31 @@ router.route("/scream").post(require('../models/validator/screamvalidator'),requ
 
 
 // get all screams
-router.route('/screms').get(async(req,res)=>{
-    const docs = await Scream.find({});
-    res.send(docs);
+router.route('/allScreams').get(async(req,res)=>{
+    // const docs = await Scream.find({});
+    // res.send(docs);
+    Scream.find()
+    .populate("postedBy","_id UserName email avatar phoneNo institutionName")
+    .then(screams=>{
+        res.json({screams})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
 })
 
 // get all screams posted by logged user
-router.route('/myScreams').get(async(req,res)=>{
-    console.log(req);
-    res.json();
-    // const docs = await Scream.find({postedBy:req.postedBy._id})
-    // .populate("PostedBy","_id UserName")
-    // .then(mypost=>{
-    //     res.json({mypost})
-    // })
-    // .catch(err=>{
-    //     console.log(err)
-    // })
+router.route('/myScreams').get(requireLogin, async(req,res)=>{
+    console.log(req.user);
+    // res.json();
+    const docs = await Scream.find({postedBy:req.user._id})
+    .populate("postedBy","_id UserName")
+    .then(myscream=>{
+        res.json({myscream})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
 })
 
 
