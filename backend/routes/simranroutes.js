@@ -55,7 +55,8 @@ router.route('/register').post(async(req,res)=>{
     };
     jwt.sign(payload, jwtSecret, { expiresIn: 360000 }, (err, token) => {
         if (err) throw err;
-        return res.json({ token });
+        const {_id,UserName,email} = user
+        return res.json({ token,user:{_id,UserName,email}});
     });
     } catch (error) {
         console.log(error);
@@ -155,7 +156,7 @@ router.route("/scream").post(require('../models/validator/screamvalidator'),requ
       .catch((err) => {
         console.log(err);
         res.status(400).json({
-          message: "not possible",
+          error: "not possible",
         });
       });
     }

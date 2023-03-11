@@ -8,6 +8,7 @@ import PostScream from './pages/PostScream';
 import StudyResources from './pages/Resources/Resources';
 import CodingProblems from './pages/CodingProblems/CodingProblems';
 import UpcomingContest from './pages/Upcoming_Contest/UpcomingContest'
+import MyScreams from './MyScreams';
 // import PageRender from './PageRender';
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/studyResources" element={<StudyResources/>} />
           <Route path="/CodingProblems" element={<CodingProblems/>} />
           <Route path="/Upcoming_Contest" element={<UpcomingContest/>} />
+          <Route path="/MyScreams" element={<MyScreams/>} />
+
 
 				</Routes>
 			</Router>

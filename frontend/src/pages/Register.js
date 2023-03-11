@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Navigate ,Link } from 'react-router-dom';
+import { Navigate ,Link , useNavigate} from 'react-router-dom';
 import Login from './Login';
 import dashboard from './Dashboard';
 import './Register.css'
 const Register = () => {
+    const navigate = useNavigate();
     const initialState = {UserName: '',email:'',password:''}
     const [userData, setUserData] = useState(initialState)
     const {UserName,email,password} = userData
@@ -35,17 +36,24 @@ const Register = () => {
                 headers:{
                     'Content-Type':'application/json'
                 }
-            }).then(res=>res.json())
+            })
+            .then(res=>res.json())
             .then(data=>{
                 if(data.error){
-                    // alert(data.error);
+                    alert(data.error);
                     setError(data.error)
                 }
                 else {
                     setError("");
                     setRegister(true);
+                    console.log(JSON.stringify(data.user))
+                    localStorage.setItem("jwt", data.token);
+                    localStorage.setItem("user", data.user.UserName);
                     <Navigate to="/dashboard" />
                 }
+            })
+            .catch(err=>{
+                console.log(error);
             })
             // console.log(response)
             // if(!response){

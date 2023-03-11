@@ -5,18 +5,22 @@
     z-index: 1;
     /* position: fixed; */
 }
+/* .div2 + .div1{
+    width: calc(100%-13rem);
+} */
 .div2{
     width: 70rem;
-    height: 100vh;
+    height: auto;
     display: inline-block;
     margin-right: 0%;
     position: relative;
     right: 0;
+    /* overflow: scroll; */
     /* margin-top: 20px; */
     
 }
 .main{
     width: 100%;
     display: flex;
-    overflow: scroll;
+    /* overflow: scroll; */
 }

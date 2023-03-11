@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./CodingProblems/CodingProblems.css";
 import Home from "./Navbar/Header";
+import { Navigate ,Link , useNavigate} from 'react-router-dom';
 import { BsPlusCircle } from "react-icons/bs";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 
 const PostScream = () => {
+  const navigate = useNavigate();
   const initialState = { title: "", link: "", description: "", skills: "" };
   const [userScream, setUserScream] = useState(initialState);
   const { title, link, description, skills } = userScream;
@@ -22,12 +24,27 @@ const PostScream = () => {
       body: JSON.stringify(userScream),
       headers: {
         "Content-Type": "application/json",
+        "Authorization":"Bearer "+localStorage.getItem("token")
       },
+    })
+    .then((result) => {
+      if(result.status===400){
+        alert("enter all the required feilds")
+      }
+      else{
+      console.log(result);
+      navigate("/dashboard");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
     });
-    if (response.status === 400) {
-      alert("enter description");
-    } else {
-    }
+    // ;
+    // if (response.status === 400) {
+    //   alert("enter description");
+    // } else {
+    //   <Navigate to="/dashboard" />
+    // }
   };
 
   const handleFormChange = (index, event) => {

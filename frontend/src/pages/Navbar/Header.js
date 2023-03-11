@@ -12,10 +12,27 @@ import { Link } from "react-router-dom";
 import { IoPersonCircleSharp } from "react-icons/io5";
 
 const Header = () => {
+  const renderList = ()=>{
+    if(!localStorage.getItem("token")){
+      return menuswithoutLogin;
+    }
+    else{
+      return menus;
+    }
+  }
   const menus = [
     { name: "dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Post_Scream", link: "/postscream", icon: AiFillPlusCircle },
-    { name: "View Votes", link: "/viewVotes", icon: FiMessageSquare },
+    { name: "My Screams", link: "/MyScreams", icon: FiMessageSquare },
+    { name: "Upcoming Contest", link: "/upcoming_Contest", icon: TbReportAnalytics, margin: true },
+    { name: "Study Resources", link: "/studyResources", icon: FiBookOpen },
+    { name: "Coding Problems", link: "/CodingProblems", icon: BiCodeAlt },
+    { name: "Login", link: "/login", icon: AiOutlineHeart},
+  ];
+  const menuswithoutLogin = [
+    { name: "dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+    // { name: "Post_Scream", link: "/postscream", icon: AiFillPlusCircle },
+    // { name: "My Screams", link: "/MyScreams", icon: FiMessageSquare },
     { name: "Upcoming Contest", link: "/upcoming_Contest", icon: TbReportAnalytics, margin: true },
     { name: "Study Resources", link: "/studyResources", icon: FiBookOpen },
     { name: "Coding Problems", link: "/CodingProblems", icon: BiCodeAlt },
@@ -47,7 +64,8 @@ const Header = () => {
           />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
-          {menus?.map((menu, i) => (
+          {
+          menus?.map((menu, i) => (
             <Link
               to={menu?.link}
               key={i}

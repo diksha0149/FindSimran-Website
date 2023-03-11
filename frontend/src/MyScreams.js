@@ -1,32 +1,28 @@
 import React from "react";
-import Header from "./Navbar/Header";
+import Header from "./pages/Navbar/Header";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./style.css";
-import "./CodingProblems/CodingProblems.css";
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   CardFooter,
-//   Typography,
-// } from "@material-tailwind/react";
-const Dashboard = () => {
+import "../src/pages/style.css";
+import "./pages/CodingProblems/CodingProblems.css";
+const MyScreams = () => {
   const navigate = useNavigate();
-  const [screams, setScreams] = useState([]);
+  const [myscream, setMyScream] = useState([]);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
   }, []);
   useEffect(() => {
-    const fetchdata = async () => {
-      const data = await axios.get("http://localhost:5000/api/allScreams");
-      console.log(data.data.screams);
-      setScreams(data.data.screams);
-    };
-    fetchdata();
+    fetch("http://localhost:5000/api/myScreams",{
+      headers:{
+        "Authorization": "Bearer "+localStorage.getItem("token")
+      }
+    }).then(res=>res.json())
+    .then(result=>{
+      console.log(result);
+      setMyScream(result.myscream);
+    })
   }, []);
   const logged_user = localStorage.getItem("user");
   return (
@@ -35,20 +31,11 @@ const Dashboard = () => {
         <div className="div1">
           <Header />
         </div>
-        <div className="div2">
+        <div className="div2"> hello
           <div>
-            <button
-              onClick={() => {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-                navigate("/login");
-              }}
-            >
-              Logout
-            </button>
-            <div>{logged_user}</div>
-            {screams.map((scream, index) => (
-              <div key={index}>
+            {myscream.map(item=>{
+              return (
+                <>
                 <div className="container">
                   <div className="card">
                     <div className="card__footer">
@@ -67,13 +54,14 @@ const Dashboard = () => {
                     </div>
                     <div className="card__body">
                       <span className="tag tag-blue">Technology</span>
-                      <h4>{scream.title}</h4>
-                      <p>{scream.description}</p>
+                      {/* <h4>{scream.title}</h4>
+                      <p>{scream.description}</p> */}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+                </>
+              )
+            })}
           </div>
         </div>
       </div>
@@ -81,4 +69,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MyScreams;
