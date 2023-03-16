@@ -170,6 +170,7 @@ router.route('/allScreams').get(async(req,res)=>{
     // res.send(docs);
     Scream.find()
     .populate("postedBy","_id UserName email avatar phoneNo institutionName")
+    .populate("vote.postedBy","_id UserName")
     .sort({
         _id: -1,
       })
@@ -199,7 +200,7 @@ router.route('/myScreams').get(requireLogin, async(req,res)=>{
 })
 
 // api to vote on scream
-router.route('/vote').get(requireLogin,async(req,res)=>{
+router.route('/vote').put(requireLogin,async(req,res)=>{
     const vote = {
         text:req.body.text,
         postedBy:req.user._id
@@ -209,6 +210,7 @@ router.route('/vote').get(requireLogin,async(req,res)=>{
     },{
         new: true
     }).populate("vote.postedBy","_id UserName")
+    .populate("postedBy","_id UserName")
     .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})

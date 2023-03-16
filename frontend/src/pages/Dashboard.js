@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Card.css";
 import { HiOutlineLink } from "react-icons/hi";
+// import scream from "../../../backend/models/scream";
+// import scream from "../../../backend/models/scream";
 // import "./style.css";
 // import "./CodingProblems/CodingProblems.css";
 // import {
@@ -24,13 +26,39 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchdata = async () => {
       const data = await axios.get("http://localhost:5000/api/allScreams");
-      // console.log(data.data.screams);
-      console.log(data.data.screams[0].postedBy.avatar);
+      console.log(data.data.screams);
+      // console.log(data.data.screams[0].postedBy.avatar);
       setScreams(data.data.screams);
     };
     fetchdata();
   }, []);
   const logged_user = localStorage.getItem("user");
+
+  const makevote = (text,postId)=>{
+       fetch('http://localhost:5000/api/vote',{
+        method:"put",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+ localStorage.getItem("token")
+        },
+        body:JSON.stringify({
+          postId,
+          text
+        })
+       }).then(res=>res.json())
+       .then(result=>{
+        const newData = screams.map(item=>{
+          if(item._id == result._id){
+            return result
+          } else{
+            return item
+          }
+        })
+        setScreams(newData);
+       }).catch(err =>{
+        console.log(err);
+       })
+  };
   return (
     <>
       <div className="page">
@@ -66,8 +94,22 @@ const Dashboard = () => {
                   <span className="tag tag-blue">{scream.title}</span>
                   <h4 className="description">{scream.description}</h4>
                   <p>{scream.skills}</p>
+                  {
+                    scream.vote.map(record=>{
+                      return (
+                        <h6 key={record._id}><span><b>{record.postedBy.UserName}</b>  {record.text}</span></h6>
+                      )
+                    })
+                  }
                 </div>
+                <form className="vote" onSubmit={(e)=>{
+                  e.preventDefault()
+                  makevote(e.target[0].value,scream._id)
+                }}>
+                <input type="text" placeholder="Enter the comment"/>
+              </form>
               </div>
+              
             </div>
           </div>
         ))}
