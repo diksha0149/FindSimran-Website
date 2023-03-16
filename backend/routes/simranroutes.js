@@ -170,6 +170,9 @@ router.route('/allScreams').get(async(req,res)=>{
     // res.send(docs);
     Scream.find()
     .populate("postedBy","_id UserName email avatar phoneNo institutionName")
+    .sort({
+        _id: -1,
+      })
     .then(screams=>{
         res.json({screams})
     })
@@ -184,6 +187,9 @@ router.route('/myScreams').get(requireLogin, async(req,res)=>{
     // res.json();
     const docs = await Scream.find({postedBy:req.user._id})
     .populate("postedBy","_id UserName")
+    .sort({
+        _id: -1,
+      })
     .then(myscream=>{
         res.json({myscream})
     })
@@ -192,7 +198,27 @@ router.route('/myScreams').get(requireLogin, async(req,res)=>{
     })
 })
 
+// api to vote on scream
+router.route('/vote').get(requireLogin,async(req,res)=>{
+    const vote = {
+        text:req.body.text,
+        postedBy:req.user._id
+    }
+    Scream.findByIdAndUpdate(req.body.postId,{
+        $push:{vote}
+    },{
+        new: true
+    }).populate("vote.postedBy","_id UserName")
+    .exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        } else{
+            res.json(result);
+        }
+    })
 
+    
+})
 
 
 

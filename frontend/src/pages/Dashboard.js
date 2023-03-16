@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "./Navbar/Header";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./style.css";
-import "./CodingProblems/CodingProblems.css";
+import "./Card.css";
+import { HiOutlineLink } from "react-icons/hi";
+// import "./style.css";
+// import "./CodingProblems/CodingProblems.css";
 // import {
 //   Card,
 //   CardHeader,
@@ -23,7 +24,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchdata = async () => {
       const data = await axios.get("http://localhost:5000/api/allScreams");
-      console.log(data.data.screams);
+      // console.log(data.data.screams);
+      console.log(data.data.screams[0].postedBy.avatar);
       setScreams(data.data.screams);
     };
     fetchdata();
@@ -31,13 +33,8 @@ const Dashboard = () => {
   const logged_user = localStorage.getItem("user");
   return (
     <>
-      <div className="main">
-        <div className="div1">
-          <Header />
-        </div>
-        <div className="div2">
-          <div>
-            <button
+      <div className="page">
+        {/* <button
               onClick={() => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
@@ -46,39 +43,39 @@ const Dashboard = () => {
             >
               Logout
             </button>
-            <div>{logged_user}</div>
-            {screams.map((scream, index) => (
-              <div key={index}>
-                <div className="container">
-                  <div className="card">
-                    <div className="card__footer">
-                      <div className="user">
-                        <img
-                          src="https://i.pravatar.cc/40?img=1"
-                          alt="user__image"
-                          className="user__image"
-                        />
-                        <div className="user__info">
-                          <h5>Jane Doe</h5>
-                          <small>2h ago</small>
-                        </div>
-                        <div className="link">fbheb</div>
-                      </div>
+            <div>{logged_user}</div> */}
+        {screams.map((scream, index) => (
+          <div key={index}>
+            <div className="container">
+              <div className="card">
+                <div className="card__footer">
+                  <div className="user_card">
+                    <img
+                      src={scream.postedBy.avatar}
+                      alt="user_image"
+                      className="user__image"
+                    />
+                    <div className="user__info">
+                      <h5>{scream.postedBy.UserName}</h5>
+                      <small>2h ago</small>
                     </div>
-                    <div className="card__body">
-                      <span className="tag tag-blue">Technology</span>
-                      <h4>{scream.title}</h4>
-                      <p>{scream.description}</p>
-                    </div>
+                    <div className="url"><a href={scream.link}><HiOutlineLink/></a></div>
                   </div>
                 </div>
+                <div className="card__body">
+                  <span className="tag tag-blue">{scream.title}</span>
+                  <h4 className="description">{scream.description}</h4>
+                  <p>{scream.skills}</p>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );
 };
 
 export default Dashboard;
+
+

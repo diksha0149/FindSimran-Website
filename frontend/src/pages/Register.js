@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Navigate ,Link , useNavigate} from 'react-router-dom';
-import Login from './Login';
-import dashboard from './Dashboard';
-import './Register.css'
+// import Login from './Login';
+// import dashboard from './Dashboard';
+// import './Register.css'
 const Register = () => {
     const navigate = useNavigate();
     const initialState = {UserName: '',email:'',password:''}

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "./CodingProblems/CodingProblems.css";
-import Home from "./Navbar/Header";
 import { Navigate ,Link , useNavigate} from 'react-router-dom';
 import { BsPlusCircle } from "react-icons/bs";
 import { AiOutlineMinusCircle } from "react-icons/ai";
@@ -65,9 +63,9 @@ const PostScream = () => {
   };
   return (
     <div className="main">
-      <div className="div1">
-        <Home />
-      </div>
+      {/* <div className="div1">
+        <Header />
+      </div> */}
       <div className="div2">
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
           <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">

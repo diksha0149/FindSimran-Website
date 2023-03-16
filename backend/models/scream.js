@@ -17,6 +17,11 @@ const screamData = new mongoose.Schema({
         type : String,
         required: true
     },
+    vote:[{
+        text:String,
+        postedBy : {type:mongoose.Schema.Types.ObjectID,
+            ref: "user"}
+    }],
     postedBy : {
         type:mongoose.Schema.Types.ObjectID,
         ref: "user"

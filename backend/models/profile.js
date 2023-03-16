@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar : {
         type : String,
-        default : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fen%2Ffree-png-zlrqq&psig=AOvVaw11MW69iBMhZL1zZJjnpOH3&ust=1672266667666000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNC6iPfsmvwCFQAAAAAdAAAAABAE'
+        default : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
     },
     phoneNo : {
         type: Number,

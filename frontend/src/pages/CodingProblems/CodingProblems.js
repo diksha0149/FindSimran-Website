@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styles from "../../index.css"
-import './CodingProblems.css'
 import Data from "./450DSA";
-import Header from "../Navbar/Header";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 export class CodingProblems extends Component {
@@ -16,13 +14,7 @@ export class CodingProblems extends Component {
   render() {
     return (
       <>
-      {/* <Header /> */}
-      <div className="main">
-        <div className="div1">
-        <Header />
-        </div>
-        <div className="div2">
-          <div>
+          <div className="w-100">
             <h1 className="text-center text-2xl text-blue-600 font-bold">
               450 DSA Questions
             </h1>
@@ -73,8 +65,6 @@ export class CodingProblems extends Component {
               </div>
             ))}
           </div>
-        </div>
-      </div>
       </>
     );
   }
