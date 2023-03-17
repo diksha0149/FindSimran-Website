@@ -222,7 +222,27 @@ router.route('/vote').put(requireLogin,async(req,res)=>{
     
 })
 
+// delete scream only by user who posted the scream
 
+router.route('/deletescream/:_id').delete(requireLogin, async(req,res)=>{
+    console.log(req.params._id);
+    Scream.findOne({_id:req.params._id})
+    .populate("postedBy","_id")
+    .exec((err,scream)=>{
+        if(err || !scream){
+            return res.status(422).json({error:err})
+        }
+        // now we check if scream is present and who is trying to delete the scream
+        if(scream.postedBy._id.toString()===req.user._id.toString()){
+            scream.remove()
+            .then(result=>{
+                res.json(result)
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+    })
+})
 
 
 module.exports = router;

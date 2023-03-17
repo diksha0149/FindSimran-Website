@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {  NavLink } from 'react-router-dom'
 import axios from "axios";
+import { AiFillDelete } from "react-icons/ai";
 import { HiOutlineLink } from "react-icons/hi";
 import "./Card.css";
 
@@ -25,6 +26,24 @@ const MyScreams = () => {
     })
   }, []);
   const logged_user = localStorage.getItem("user");
+
+  const deleteScream=(screamid)=>{
+    fetch(`http://localhost:5000/api/deletescream/${screamid}`,{
+      method:"delete",
+      headers:{
+        Authorization: "Bearer "+localStorage.getItem("token")
+      }
+    }).then(res=>res.json())
+    .then(result=>{
+      console.log(screamid)
+      const newData = myscream.filter(item=>{
+        return item.postedBy._id !== result._id
+      })
+      setMyscream(newData);
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   return (
     <>
           <div>
@@ -43,7 +62,13 @@ const MyScreams = () => {
                     <h5>{myscream[index].postedBy.UserName}</h5>
                       <small>2h ago</small>
                     </div>
-                    <div className="url"><a href={myscream[index].link}><HiOutlineLink/></a></div>
+                    
+                    <div className="url">
+                      <div className="delete" onClick={(e)=>{
+                        e.preventDefault()
+                        deleteScream(myscream[index]._id)
+                      }}><AiFillDelete/></div>
+                      <a href={myscream[index].link}><HiOutlineLink/></a></div>
                   </div>
                 </div>
                 <div className="card__body">
@@ -51,7 +76,9 @@ const MyScreams = () => {
                   <h4>{myscream[index].description}</h4>
                   <p>{myscream[index].skills}</p>
                 </div>
+                
               </div>
+              
             </div>
           </div>
         ))}
