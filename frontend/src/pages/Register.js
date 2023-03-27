@@ -73,7 +73,7 @@ const Register = () => {
                 <div>
                     <a href="/">
                         <h3 className="text-4xl font-bold text-purple-600">
-                            Logo
+                            FindSimran
                         </h3>
                     </a>
                 </div>
