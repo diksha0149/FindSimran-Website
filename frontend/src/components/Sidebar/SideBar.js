@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaUsers } from "react-icons/fa";
 import { AiFillFileAdd, AiOutlineQuestion, AiTwotoneFileExclamation } from "react-icons/ai";
 import { useState } from "react";
@@ -62,6 +62,7 @@ const routes = [
 const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
   const inputAnimation = {
     hidden: {
       width: 0,
@@ -105,6 +106,15 @@ const SideBar = ({ children }) => {
         <div className="profileIcon">
           <div className="userName">{logged_user}</div>
           <div className="icon"><IoPersonCircleSharp size='60px'/></div>
+          <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
         </div>
       </div>
     </div>
