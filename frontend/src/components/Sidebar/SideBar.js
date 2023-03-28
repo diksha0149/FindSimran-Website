@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 import { BiAnalyse, BiSearch } from "react-icons/bi";
@@ -16,7 +16,6 @@ import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { FiMessageSquare, FiFolder, FiShoppingCart,FiBookOpen } from "react-icons/fi";
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { BiCodeAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import SidebarMenu from "./SidebarMenu";
 const routes = [
@@ -70,6 +69,7 @@ const routes = [
 const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
   const inputAnimation = {
     hidden: {
       width: 0,
@@ -113,6 +113,16 @@ const SideBar = ({ children }) => {
         <div className="profileIcon">
           <div className="userName">{logged_user}</div>
           <div className="icon"><IoPersonCircleSharp size='60px'/></div>
+          <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                // localStorage.removeItem("jwt");
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
         </div>
       </div>
     </div>

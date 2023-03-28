@@ -20,6 +20,7 @@ module.exports = (req,res,next)=>{
             console.log(userdata);
             req.user = userdata;
             next();
+            
         })
        
         // return res.status(200).json({mssg:"logged in successfully"});

@@ -84,7 +84,7 @@ const Dashboard = () => {
                       className="user__image"
                     />
                     <div className="user__info">
-                      <h5>{scream.postedBy.UserName}</h5>
+                      <h5>{scream.postedBy._id.UserName}</h5>
                       <small>2h ago</small>
                     </div>
                     <div className="url"><a href={scream.link}><HiOutlineLink/></a></div>
@@ -95,9 +95,13 @@ const Dashboard = () => {
                   <h4 className="description">{scream.description}</h4>
                   <p>{scream.skills}</p>
                   {
-                    scream.vote.map(record=>{
+                    scream.vote.map((record,index)=>{
                       return (
-                        <h6 key={record._id}><span><b>{record.postedBy.UserName}</b>  {record.text}</span></h6>
+                        <>
+                        <h6 key={record._id}><span>{record.text}</span></h6>
+                          {/* <h5>{record.postedBy.UserName}</h5>  */}
+                          {/* <b>{record.postedBy.UserName}</b> */}
+                        </>  
                       )
                     })
                   }

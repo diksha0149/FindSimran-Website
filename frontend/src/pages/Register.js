@@ -47,7 +47,7 @@ const Register = () => {
                     setError("");
                     setRegister(true);
                     console.log(JSON.stringify(data.user))
-                    localStorage.setItem("jwt", data.token);
+                    localStorage.setItem("token", data.token);
                     localStorage.setItem("user", data.user.UserName);
                     <Navigate to="/dashboard" />
                 }
