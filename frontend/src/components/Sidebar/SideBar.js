@@ -1,22 +1,14 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
-import { BiAnalyse, BiSearch } from "react-icons/bi";
-import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
-import { BsCartCheck } from "react-icons/bs";
+import { FaBars, FaUsers } from "react-icons/fa";
+import { AiFillFileAdd, AiOutlineQuestion, AiTwotoneFileExclamation } from "react-icons/ai";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
-// import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiMessageSquare, FiFolder, FiShoppingCart,FiBookOpen } from "react-icons/fi";
-import { AiFillPlusCircle } from 'react-icons/ai';
-import { BiCodeAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { AiOutlineUserAdd } from 'react-icons/ai';  
+import {ImBooks} from "react-icons/im"
+import {BsTrophyFill} from 'react-icons/bs'
+import {GoSignIn} from "react-icons/go"
 import { IoPersonCircleSharp } from "react-icons/io5";
 import SidebarMenu from "./SidebarMenu";
 const routes = [
@@ -28,12 +20,12 @@ const routes = [
   {
     path: "/users",
     name: "Users",
-    icon: <FaUser />,
+    icon: <FaUsers />,
   },
   {
     path: "/postScream",
     name: "Post Scream",
-    icon: <AiTwotoneFileExclamation />,
+    icon: <AiFillFileAdd   />,
   },
   {
     path: "/myscream",
@@ -43,27 +35,27 @@ const routes = [
   {
     path: "/codingProblems",
     name: "CodingProblems",
-    icon: <BsCartCheck />,
+    icon: <AiOutlineQuestion />,
   },
   {
     path: "/upcomingcontest",
     name: "Contest",
-    icon: <AiFillHeart />,
+    icon: <BsTrophyFill />,
   },
   {
     path: "/StudyResources",
     name: "Resources",
-    icon: <AiFillHeart />,
+    icon: <ImBooks />,
   },
   {
     path: "/login",
     name: "Login",
-    icon: <BiAnalyse />,
+    icon: <GoSignIn />,
   },
   {
     path: "/register",
     name: "Register",
-    icon: <MdMessage />,
+    icon: <AiOutlineUserAdd />,
   }
 ];
 
