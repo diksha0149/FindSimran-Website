@@ -9,7 +9,7 @@ import { AiOutlineUserAdd } from 'react-icons/ai';
 import {ImBooks} from "react-icons/im"
 import {BsTrophyFill} from 'react-icons/bs'
 import {GoSignIn} from "react-icons/go"
-import { IoPersonCircleSharp } from "react-icons/io5";
+import { IoPerson, IoPersonCircleOutline, IoPersonCircleSharp, IoPersonOutline } from "react-icons/io5";
 import SidebarMenu from "./SidebarMenu";
 const routes = [
   {
@@ -105,7 +105,7 @@ const SideBar = ({ children }) => {
         <div className="logo">FIND-SIMRAN</div>
         <div className="profileIcon">
           <div className="userName">{logged_user}</div>
-          <div className="icon"><IoPersonCircleSharp size='60px'/></div>
+          <div className="icon"> <IoPersonCircleOutline size='30'/></div>
           <button
               onClick={() => {
                 localStorage.removeItem("token");
