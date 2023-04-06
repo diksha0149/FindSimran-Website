@@ -122,18 +122,19 @@ main {
   height: 60px;
   background-color: skyblue;
   z-index: 10;
-  position: relative;
-  padding: 0px 10px 0px 10px;
+  /* position: relative; */
+  padding: 0px 20px 0px 20px;
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
 }
 .profileIcon .logo, .icon, .userName{
   display: inline-block;
 }
 .profileIcon{
- right: 0%;
- top: 0%;
-position: absolute;
+ /* right: 0%; */
+ /* top: 0%; */
+/* position: absolute; */
 
 }
 .profileIcon{
