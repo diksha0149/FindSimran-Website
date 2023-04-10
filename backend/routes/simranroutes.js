@@ -201,9 +201,10 @@ router.route('/myScreams').get(requireLogin, async(req,res)=>{
 
 // api to vote on scream
 router.route('/vote').put(requireLogin,async(req,res)=>{
+    // console.log(req);
     const vote = {
         text:req.body.text,
-        postedBy:req.user._id
+        postedBy:req.user.id
     }
     Scream.findByIdAndUpdate(req.body.postId,{
         $push:{vote}

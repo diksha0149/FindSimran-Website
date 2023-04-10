@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, Link, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -61,7 +61,7 @@ const Login = () => {
         <form className="mt-6" onSubmit={handleSubmit}>
           <div className="mb-2">
             <label
-              for="email"
+              htmlFor="email"
               className="block text-sm font-semibold text-gray-800"
             >
               Email
@@ -76,7 +76,7 @@ const Login = () => {
           </div>
           <div className="mb-2">
             <label
-              for="password"
+              htmlFor="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Password
@@ -98,7 +98,7 @@ const Login = () => {
 
         <p className="mt-8 text-xs font-light text-center text-gray-700">
           {" "}
-          Don't have an account? <Link to="/register">Sign Up</Link>
+          Don't have an account? <NavLink to="/register">Sign Up</NavLink>
         </p>
       </div>
     </div>

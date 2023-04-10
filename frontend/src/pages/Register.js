@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigate ,Link , useNavigate} from 'react-router-dom';
+import { Navigate ,NavLink , useNavigate} from 'react-router-dom';
 // import Login from './Login';
 // import dashboard from './Dashboard';
 // import './Register.css'
@@ -149,7 +149,7 @@ const Register = () => {
                     <div className="mt-4 text-grey-600">
                         Already have an account?{" "}
                         <span>
-                        <Link to="/login">Login</Link>
+                        <NavLink to="/login">Login</NavLink>
                         </span>
                     </div>
                 </div>

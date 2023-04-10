@@ -47,6 +47,7 @@ const Dashboard = () => {
         })
        }).then(res=>res.json())
        .then(result=>{
+        console.log(result.vote[0].postedBy);
         const newData = screams.map(item=>{
           if(item._id == result._id){
             return result
@@ -84,7 +85,7 @@ const Dashboard = () => {
                       className="user__image"
                     />
                     <div className="user__info">
-                      <h5>{scream.postedBy._id.UserName}</h5>
+                      <h5>{scream.postedBy.UserName}</h5>
                       <small>2h ago</small>
                     </div>
                     <div className="url"><a href={scream.link}><HiOutlineLink/></a></div>
@@ -95,19 +96,19 @@ const Dashboard = () => {
                   <h4 className="description">{scream.description}</h4>
                   <p>{scream.skills}</p>
                   {
-                    scream.vote.map((record,index)=>{
+                    scream.vote.map((record,ind)=>{
                       return (
-                        <>
-                        <h6 key={record._id}><span>{record.text}</span></h6>
-                          {/* <h5>{record.postedBy.UserName}</h5>  */}
-                          {/* <b>{record.postedBy.UserName}</b> */}
-                        </>  
+                        <div key={ind}>
+                        <h6><span><b></b>{record.text}</span></h6>
+                          {/* <h5>{record.postedBy}</h5>  */}
+                        </div>  
                       )
                     })
                   }
                 </div>
                 <form className="vote" onSubmit={(e)=>{
                   e.preventDefault()
+                  console.log(e.target[0].value);
                   makevote(e.target[0].value,scream._id)
                 }}>
                 <input type="text" placeholder="Enter the comment"/>
