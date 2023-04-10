@@ -102,8 +102,8 @@ const SideBar = ({ children }) => {
     <>
     <div>
       <div className="topbar">
-        <div className="logo">FIND-SIMRAN</div>
-        <div className="profileIcon">
+        <div className="logo text-white">FIND-SIMRAN</div>
+        <div className="profileIcon shadow-lg">
           <div className="userName">{logged_user}</div>
           <div className="icon"> <IoPersonCircleOutline size='30'/></div>
           <button
